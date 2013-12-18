@@ -2,7 +2,7 @@
     'use strict';
     
     var document = window.document,
-        path = 'http://stojkov.me/mk-keyboard/',
+        srcpath = 'http://stojkov.me/mk-keyboard/mkboard.min.html',
         k,
         s = [
             '#mkkb-wrapper {',
@@ -37,7 +37,7 @@
     
     k = document.createElement('style');
 	k.setAttribute('id', 'mkkb-loader-styles');
-	k.appendChild( document.createTextNode( s.join("") ) );
+	k.appendChild( document.createTextNode( s.join('') ) );
 	(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(k);
     
     
@@ -45,11 +45,11 @@
     div.setAttribute('id', 'mkkb-wrapper');
     
     iframe = document.createElement('iframe');
-    iframe.setAttribute('src', path + 'mkboard.html');
+    iframe.setAttribute('src', srcpath);
     div.appendChild(iframe);
     (document.getElementsByTagName('BODY')[0]).appendChild(div);
     
-    window.addEventListener("message", receiveMessage, false);
+    window.addEventListener('message', receiveMessage, false);
     
     function receiveMessage(e) {
         if(e.data == 'close') {
