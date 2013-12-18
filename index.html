@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="mk">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Едноставно алатче за брз пристап до è и ѝ">
+    <meta name="author" content="Vanco Stojkov">
+    <link rel="shortcut icon" href="../favicon.ico">
+      
+    <link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
+
+    <title>Алатче за пристап до è и ѝ</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/custom-bootstrap.css" rel="stylesheet">
+
+    
+  </head>
+
+  <body>
+
+    <div class="container">
+      
+      <div class="jumbotron">
+        <h1><strong>è</strong> + <strong>ѝ</strong></h1>
+        <p class="lead">Едноставно <!--a href="http://en.wikipedia.org/wiki/Bookmarklet" target="_blank"-->алатче (bookmarklet)<!--/a--> за брз пристап до <i>è</i> и <i>ѝ</i> од веб прелистувач</p>
+        
+          
+        <p><a class="btn btn-lg btn-success" href='javascript:(function(){var a=document,b,c;(b=a.getElementById("mkkb-wrapper"))?b.classList.remove("mkkb-hide"):(b=a.createElement("script"),c=a.body,a=a.location,b.setAttribute("src","http://stojkov.me/mk-keyboard/js/mkb-loader.js?r="+encodeURIComponent(a.href)+"&t="+(new Date).getTime()),c.appendChild(b))})();' role="button">è + ѝ</a><!-- ← Повлечете го во <i>bookmark bar</i--></p>
+      </div>
+
+      <div class="row marketing">
+        <div class="col-lg-12">
+        <h3>Предговор</h3>
+        <p>Алатката е направена од потребата за брз пристап до <i>è</i> и <i>ѝ</i>, за кои никако не успеав да најдам начин со кој ќе можам да пристапам до секоја од нив од секоја платформа (Windows, Mac, Linux) и од секоја тастататура користејќи македонска поддршка</p> 
+        <p><strong>Ако знаеш како да пристапиш до <i>è</i> и <i>ѝ</i> ова не ти е потребно за користење, но ќе ти бидам многу благодарен ако споделиш</strong>.</p>
+        
+            <p>Единствено преку тастатурите како онаа прикажана на сликата подолу со екстра копче веднаш до левиот „Shift” може да се пристапи до <i>è</i> на Windows (многу ретки кај нас, сум ги забележал само не некои Dell лаптопи произведени во Ирска).</p>
+            <p><img src="img/keyboard_mk.jpg" width="512" alt="пристап до è и ѝ од тастатура"> </p>
+        
+        <p>Досега до è и ѝ пристапував преку <a href="http://mk.wikipedia.org/wiki/%D0%9C%D0%B0%D0%BA%D0%B5%D0%B4%D0%BE%D0%BD%D1%81%D0%BA%D0%B0_%D0%B0%D0%B7%D0%B1%D1%83%D0%BA%D0%B0">статија на Википедија</a> каде во секцијата „Уникатни букви” достапни се <i>è</i> и <i>ѝ</i> &mdash; макотрпен процес за една толку тривијална работа кој изискува огромна физичка (пред сè на мускулите на прстите) и интелектуална енергија потрошена во барањето на одговорот на прашањето „која беше статијата на Википедија... ок за*би, како да ја барам преку Google?” (мислам дека програмерите секогаш стигнуваат до решението на најтешкиот начин).</p>
+        
+            
+          <h3>Употреба</h3>
+          <p>Сè што треба да направите за да ви биде достапна алатката во веб прелистувачот е да го повлечете (<i>drag &amp; drop</i>) горното копче во <i>bookmark toolbar</i> и ќe биде достапна на секоја страница. Пред да го направите тоа осигурајте се дека <i>bookmark toolbar</i> ќе биде видлив (детали достапни во кратките видеа подолу).</p>
+        
+            <p>Алатката функционира како <i>copy/paste</i> &mdash; со кликнување на <i>è</i> или <i>ѝ</i> соодветната буква со надреден знак ќе биде ископирана (copy) и достапна за вметнување (paste) било каде.</p>
+        
+            <!--p>Потребно е да имате <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash Pleyer plug-in</a> за да може да ја користите опцијата click/paste.</p-->
+        
+            <p>&nbsp;</p>
+          <p>
+              Детали за користење на алатката во Firefox:</p>
+          <p>
+              <iframe width="480" height="360" src="//www.youtube.com/embed/FAhoTm2jcE8?rel=0" frameborder="0" allowfullscreen></iframe></p>
+          
+        <p>&nbsp;</p>
+            <p>
+              Детали за користење на алатката во Chrome: </p>
+        
+        <p>
+              <iframe width="480" height="360" src="//www.youtube.com/embed/SG-pTQOgOIk?rel=0" frameborder="0" allowfullscreen></iframe></p>
+
+          <h3>Код</h3>
+          <p>Кодот е слободен и достапен на <a href="https://github.com/van100j/mkboard" target="_blank">GitHub</a> за каква било употреба.</p>
+
+        </div>
+
+        
+      </div>
+
+      <div class="footer">
+        <p>&copy; <a href="https://twitter.com/van100j">@van100j</a> 2013</p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>
