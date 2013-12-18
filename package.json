@@ -1,0 +1,16 @@
+{
+  "name": "mkboard",
+  "description": "Алатче за брз пристап до è и ѝ од интернет прелистувач",
+  "version": "0.1.0",
+  "author": "Vanco Stojkov <van100j@gmail.com>",
+  "repository": "git://github.com/van100j/mkboard",
+  "licenses": [{
+    "type": "MIT"
+  }],
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-cssmin": "~0.7.0",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-htmlmin": "~0.1.3"
+  }
+}
