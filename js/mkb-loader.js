@@ -2,7 +2,7 @@
     'use strict';
     
     var document = window.document,
-        srcpath = 'http://stojkov.me/mk-keyboard/mkboard.min.html',
+        srcpath = 'https://stojkov.me/mk-keyboard/mkboard.min.html',
         k,
         s = [
             '#mkkb-wrapper {',
