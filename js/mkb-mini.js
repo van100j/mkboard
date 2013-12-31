@@ -232,9 +232,6 @@
     
     domMgr.getById('mkkb-close-btn').addEventListener('click', function() {
 		window.parent.postMessage("close", "*");
-        [].forEach.call((domMgr.getById('mkkb-cnt')).querySelectorAll('.mkkb-show'), function(el) {
-            el.classList.remove('mkkb-show');
-        });
 	});
 
     function getChar(code) {
