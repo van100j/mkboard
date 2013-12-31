@@ -15,8 +15,8 @@
         return;
     }
     
-    var //srcpath = 'https://stojkov.me/mk-keyboard/mkboard.min.html',
-        srcpath = 'mkboard.html',
+    var srcpath = 'https://stojkov.me/mk-keyboard/mkboard.min.html',
+        //srcpath = 'mkboard.html',
         k,
         s = [
             '#mkkb-wrapper {',
