@@ -12,10 +12,36 @@
 <div id="mkkb-cnt" class="">
 	<div class="mkkb-settings">
 		<div id="mkkb-about">
-            <span id="mkkb-copy-paste">è + ѝ  —  È + Ѝ</span>
-            <label for="mkkb-copy-text"><input id="mkkb-copy-text" class="mkkb-hide" type="text" maxlength="1" readonly="readonly"></label>
+            <span id="mkkb-e-selected-text" class="">Ископирана е <b>è</b></span>
+			<span id="mkkb-i-selected-text" class="">Ископирана е <b>ѝ</b></span>
+			<span id="mkkb-e-upper-selected-text" class="">Ископирана е <b>È</b></span>
+			<span id="mkkb-i-upper-selected-text" class="">Ископирана е <b>Ѝ</b></span>
+            
+            <span id="mkkb-e-copy-text" class="">Ископирај <b>è</b> (ctrl + C / cmd + C)</span>
+            <span id="mkkb-i-copy-text" class="">Ископирај <b>ѝ</b> (ctrl + C / cmd + C)</span>
+            <span id="mkkb-e-upper-copy-text" class="">Ископирај <b>È</b> (ctrl + C / cmd + C)</span>
+            <span id="mkkb-i-upper-copy-text" class="">Ископирај <b>Ѝ</b> (ctrl + C / cmd + C)</span>
+            <span id="mkkb-no-flash-text" class="">Избери и копирај</span>
         </div>
-		<div class="mkkb-setbtn" id="mkkb-close-btn">&times;</div>
+		<div class="mkkb-setbtn" id="mkkb-close-btn" title="Затвори">&times;</div>
+    </div>
+    
+    <div class="mkkb-row" id="mkkb-inputs">
+         <label for="mkkb-copy-text-e">
+            <input id="mkkb-copy-text-e" type="text" maxlength="1" data-value="è" value="è">
+        </label>
+        
+        <label for="mkkb-copy-text-i">
+            <input id="mkkb-copy-text-e" type="text" maxlength="1" data-value="ѝ" value="ѝ">
+        </label>
+        
+        <label for="mkkb-copy-text-e-upper">
+            <input id="mkkb-copy-text-e-upper" type="text" maxlength="1" data-value="È" value="È">
+        </label>
+        
+        <label for="mkkb-copy-text-i-upper">
+            <input id="mkkb-copy-text-i-upper" type="text" maxlength="1" data-value="Ѝ" value="Ѝ">
+        </label>
     </div>
 	
 	<div class="mkkb-row">

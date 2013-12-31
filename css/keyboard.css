@@ -20,17 +20,14 @@ html, body {
 body {
     font-size: 75%;
     color: #222;
-    background: transparent;
     font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 	overflow: hidden;
+    border: 1px solid #ccc;
+	background: #D7D7D7;
 }
 #mkkb-cnt {
-	margin:10px;
-	border: 1px solid #ccc;
-	background: #eee;
-    background: rgba(238, 238, 238, .85);
-    float: left;
-    /*
+    float:left;
+	/*
    -webkit-touch-callout: none;
    -webkit-user-select: none;
    -khtml-user-select: none;
@@ -77,48 +74,60 @@ body {
 	cursor: default;
 }
 
-#mkkb-copy-text {
-    width: 20px;
-    margin:0;
-    padding: 1px;
-    font-size: 12px;
-    border:1px solid #ccc;
-    position:relative; 
-    left: -2px;
-    height: 14px;
-    top: -2px;
-    white-space: pre;
-}
-
-#mkkb-copy-text:focus {
-    border-color:#51A7E8;
-}
-
 #mkkb-about span {
-/*
-    transform-origin:0;
-    -webkit-transform-origin:0;
-    
-    transform: scale(0, 1);
-    -webkit-transform: scale(0, 1);
-    
-    transform: scale3d(0, 1, 1);
-    -webkit-transform: scale3d(0, 1, 1);
-    
-    transition: transform 0.25s ease-out;
-    -webkit-transition: -webkit-transform 0.25s ease-out;
- */  
-    display: inline-block;
+    display: block;
+	position:absolute;
+    color: #777;
+	
+	opacity:0;
 }
-/*
-#mkkb-cnt:hover #mkkb-about span {
-    transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    
-    transform: scale3d(1, 1, 1);
-    -webkit-transform: scale3d(1, 1, 1);
+
+#mkkb-about span.mkkb-show {
+	-webkit-animation: slidein 2.5s ease-out;
+    animation: slidein 2.5s ease-out;
 }
-*/
+
+@-webkit-keyframes slidein {
+	0%, 100% {
+		opacity:0;
+	}
+	10%, 90% {
+		opacity:1;
+	}
+}
+
+@keyframes slidein {
+	0%, 100% {
+		opacity:0;
+	}
+	10%, 90% {
+		opacity:1;
+	}
+}
+
+
+input {
+    border:0 none;
+    background: none;
+    width:100%;
+    height:100%;
+    text-align:center;
+    padding:0;
+    margin:0;
+    -webkit-box-sizing: border-box; 
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+    font-size: 14px;
+    color: #666;
+    text-shadow: 1px 1px 0 #fff;
+}
+
+input:focus {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+
+/*
 .mkkb-setbtn {
 	display:block;
 	float:right;
@@ -168,6 +177,68 @@ body {
 	background: #efefef;
     color: #06c;
 }
+*/
+/* http://dl.dropboxusercontent.com/u/921159/Keyboard/page.html# */
+.mkkb-setbtn {
+	
+	-webkit-app-region: no-drag;
+	position:relative;
+	cursor:pointer;
+
+	float: right;
+	color: #888;
+	margin: -5px 5px 0 0;
+    padding: 1px;
+	font-size: 14px;
+	text-shadow: 0px 1px 0px #f5f5f5;
+    border: 1px solid transparent;
+}
+.mkkb-setbtn:hover {
+	color: #222;
+}
+
+
+label,
+.mkkb-key {
+	
+	-webkit-app-region: no-drag;
+	position:relative;
+	cursor:pointer;
+	
+	/*
+	float:left;
+	*/
+	
+	display: inline-block;
+	color: #aaa;
+	font: bold 9pt arial;
+	text-decoration: none;
+	vertical-align: middle;
+	text-align: center;
+	width: 34px;
+	height: 31px;
+	margin: 5px;
+   
+   background: #F1EDED;
+   border-radius: 4px;
+   border-top: 1px solid #f5f5f5;
+   box-shadow: inset 0 0 25px #e8e8e8,
+		0 1px 0 #c3c3c3,
+		0 2px 0 #c9c9c9,
+		0 2px 3px #333;
+   text-shadow: 0px 1px 0px #f5f5f5;
+}
+
+.mkkb-key:active,
+.mkkb-key.zeroclipboard-is-active,
+.mkkb-key.mkkb-clicked {
+    color: #888;
+    background: #ebeced;
+    margin: 7px 5px 3px;
+    box-shadow: inset 0 0 25px #ddd,
+		0 0 3px #333;
+    border-top: 1px solid #eee;
+}
 .mkkb-key:after {
 	display: block;
 	height: 18px;
@@ -179,6 +250,18 @@ body {
 	margin:0 0px;
 	padding: 3px 5px;
 }
+
+.noflash .mkkb-key {
+    display: none;
+}
+label {
+    display: none;
+}
+
+.noflash label {
+    display: inline-block;
+}
+
 #k192:after {
    content: "ѝ";
 }

@@ -74,14 +74,36 @@
 	
 	var domMgr = new DOMManager();
     
+    
     if( MKBoardHasFlash ) {
         clip = new ZeroClipboard([document.getElementById('k192'), document.getElementById('k226')]);
         
         clip.on('dataRequested', function(klient, args) {
             var key = this.getAttribute('id').replace("k", ''),
+                el,
                 ch = (isShift || isCaps) ? keymap.upper[ key ] : keymap.lower[ key ];
             
             klient.setText( ch );
+            
+            /**/
+            [].forEach.call((domMgr.getById('mkkb-cnt')).querySelectorAll('.mkkb-show'), function(el) {
+				el.classList.remove('mkkb-show');
+			});
+            
+            if(key == 192) { // i
+                el = (isShift || isCaps) ? 'mkkb-i-upper-selected-text' : 'mkkb-i-selected-text';
+            } else {
+                el = (isShift || isCaps) ? 'mkkb-e-upper-selected-text' : 'mkkb-e-selected-text';
+            }
+            
+            if( isShift ) {
+                domMgr.removeClass('mkkb-cnt', 'mkkb-shift');
+                domMgr.removeClass('mkkb-shiftBtn', 'mkkb-clicked', 1);
+                isShift = !1;
+            }
+            
+            domMgr.getById(el).classList.add('mkkb-show');
+            /**/
             
             if( isShift ) {
                 domMgr.removeClass('mkkb-cnt', 'mkkb-shift');
@@ -90,116 +112,132 @@
             }
             
         });
+        
+        
+        // Handle Mouse Clicks:
+        (domMgr.getById('mkkb-cnt')).addEventListener('click', function(e) {
+            if ( e.target.nodeType === 1) { 
+                
+                [].forEach.call((domMgr.getById('mkkb-cnt')).querySelectorAll('.mkkb-show'), function(el) {
+                    el.classList.remove('mkkb-show');
+                });
+                
+                // Char Clicked:
+                //if( (" " + e.target.className + " ").replace(/[\n\t\r]/g, " ").indexOf( " mkkb-char " ) > -1 ) {
+                if(e.target.classList.contains('mkkb-char')) {
+                    var el, idkey = e.target.getAttribute('id').replace('k', ''), ch = getChar(idkey);
+                    
+                    if(idkey == 192) { // i
+                        el = (isShift || isCaps) ? 'mkkb-i-upper-selected-text' : 'mkkb-i-selected-text';
+                    } else {
+                        el = (isShift || isCaps) ? 'mkkb-e-upper-selected-text' : 'mkkb-e-selected-text';
+                    }
+                    
+                    if( isShift ) {
+                        domMgr.removeClass('mkkb-cnt', 'mkkb-shift');
+                        domMgr.removeClass('mkkb-shiftBtn', 'mkkb-clicked', 1);
+                        isShift = !1;
+                    }
+                    
+                    domMgr.getById(el).classList.add('mkkb-show');
+                
+                //} else if( (" " + e.target.className + " ").replace(/[\n\t\r]/g, " ").indexOf( " mkkb-shiftBtn " ) > -1 ) { // Shift
+                } else if(e.target.classList.contains('mkkb-shiftBtn')) {
+                    if(isShift) {
+                        isShift = !1;
+                        domMgr.removeClass('mkkb-cnt', 'mkkb-shift');
+                        domMgr.removeClass('mkkb-shiftBtn', 'mkkb-clicked', 1);
+                    } else {
+                        isShift = !0;
+                        domMgr.addClass('mkkb-cnt', 'mkkb-shift');
+                        domMgr.addClass('mkkb-shiftBtn', 'mkkb-clicked', 1);
+                        
+                        if( isCaps ) {
+                            domMgr.removeClass('mkkb-cnt', 'mkkb-caps');
+                            domMgr.removeClass('mkkb-caps', 'mkkb-clicked', 1);
+                            isCaps = !1;
+                        }
+                    }
+                
+                //} else if( (" " + e.target.className + " ").replace(/[\n\t\r]/g, " ").indexOf( " mkkb-caps " ) > -1 ) { // Caps Lock
+                } else if(e.target.classList.contains('mkkb-caps')) {
+                    if(isCaps) {
+                        isCaps = !1;
+                        domMgr.removeClass('mkkb-cnt', 'mkkb-caps');
+                        domMgr.removeClass('k20', 'mkkb-clicked');
+                    } else {
+                        isCaps = !0;
+                        domMgr.addClass('mkkb-cnt', 'mkkb-caps');
+                        domMgr.addClass('k20', 'mkkb-clicked');
+                    }
+                    
+                    if( isShift ) {
+                        domMgr.removeClass('mkkb-cnt', 'mkkb-shift');
+                        domMgr.removeClass('mkkb-shiftBtn', 'mkkb-clicked', 1);
+                        isShift = !1;
+                    }
+                }
+            }
+        });
+        
+        
     } else {
-        domMgr.getById('mkkb-copy-text').classList.remove('mkkb-hide');
-        domMgr.getById('mkkb-copy-paste').classList.add('mkkb-hide');
+        domMgr.getById('mkkb-cnt').classList.add('noflash');
+        
+        (domMgr.getById('mkkb-no-flash-text')).classList.add('mkkb-show');
+        
+        domMgr.getById('mkkb-inputs').addEventListener("click", function(e) {
+            var el;
+            if(e.target.nodeName == 'INPUT') {
+            
+                [].forEach.call((domMgr.getById('mkkb-cnt')).querySelectorAll('.mkkb-show'), function(el) {
+                    el.classList.remove('mkkb-show');
+                });
+                
+                switch(e.target.getAttribute('data-value')) {
+                    case 'è':
+                        el = 'mkkb-e-copy-text';
+                        break;
+                    
+                    case 'ѝ':
+                         el = 'mkkb-i-copy-text';
+                        break;
+                    
+                    case 'È':
+                         el = 'mkkb-e-upper-copy-text';
+                        break;
+                    
+                    case 'Ѝ':
+                         el = 'mkkb-i-upper-copy-text';
+                        break;
+                    default:
+                        break;
+                }
+                (domMgr.getById(el)).classList.add('mkkb-show');
+                e.target.select();
+            }
+           
+        });
+        
+        domMgr.getById('mkkb-inputs').addEventListener("keyup", function(e) {
+            var val = e.target.getAttribute('data-value');
+            
+            if( e.target.value != val ) {
+                e.target.value = val;
+                e.target.select();
+            }
+        });
     }
 	
-    /*
-	window.addEventListener("keydown", function(e) {		
-		if(e.keyCode == 20) { // Caps Lock
-			isCaps = !isCaps;
-			if(isCaps) {
-				domMgr.addClass('mkkb-cnt', 'mkkb-caps');
-				domMgr.addClass('k' + e.keyCode, 'mkkb-clicked');
-			} else {
-				domMgr.removeClass('mkkb-cnt', 'mkkb-caps');
-				domMgr.removeClass('k' + e.keyCode, 'mkkb-clicked');
-			}
-            
-            if( isShift ) {
-                domMgr.removeClass('mkkb-cnt', 'mkkb-shift');
-                domMgr.removeClass('mkkb-shiftBtn', 'mkkb-clicked', 1);
-                isShift = !1;
-            }
-		} else if(e.keyCode == 16 && !isShift) { // Shift [add]
-			isShift = !0;
-			domMgr.addClass('mkkb-cnt', 'mkkb-shift');
-			domMgr.addClass('mkkb-shiftBtn', 'mkkb-clicked', 1);
-		}
-	});
-	
-	window.addEventListener("keyup", function(e) {
-		if(e.keyCode == 16 && isShift) {
-			isShift = !1;
-			domMgr.removeClass('mkkb-cnt', 'mkkb-shift');
-			domMgr.removeClass('mkkb-shiftBtn', 'mkkb-clicked', 1);
-		} else if(e.keyCode != 20) { // Caps Lock
-			domMgr.removeClass('k' + e.keyCode, 'mkkb-clicked');
-            
-            if( isShift ) {
-                domMgr.removeClass('mkkb-cnt', 'mkkb-shift');
-                domMgr.removeClass('mkkb-shiftBtn', 'mkkb-clicked', 1);
-                isShift = !1;
-            }
-		}
-        
-    });
-    */
     
     domMgr.getById('mkkb-close-btn').addEventListener('click', function() {
-		//domMgr.setStyle('mkkb-cnt', 'display', 'none');
-        
-        window.parent.postMessage("close", "*");
+		window.parent.postMessage("close", "*");
+        [].forEach.call((domMgr.getById('mkkb-cnt')).querySelectorAll('.mkkb-show'), function(el) {
+            el.classList.remove('mkkb-show');
+        });
 	});
 
-	// Handle Mouse Clicks:
-	(domMgr.getById('mkkb-cnt')).addEventListener('click', function(e) {
-		if ( e.target.nodeType === 1) { 
-			// Char Clicked:
-			//if( (" " + e.target.className + " ").replace(/[\n\t\r]/g, " ").indexOf( " mkkb-char " ) > -1 ) {
-			if(e.target.classList.contains('mkkb-char')) {
-                var ch = getChar(e.target.getAttribute('id').replace('k', ''));
-                
-                //domMgr.getById('mkkb-copy-text').setAttribute('value', ch);
-                domMgr.getById('mkkb-copy-text').value = ch;
-                
-                if( isShift ) {
-                    domMgr.removeClass('mkkb-cnt', 'mkkb-shift');
-                    domMgr.removeClass('mkkb-shiftBtn', 'mkkb-clicked', 1);
-                    isShift = !1;
-                }
-			
-			//} else if( (" " + e.target.className + " ").replace(/[\n\t\r]/g, " ").indexOf( " mkkb-shiftBtn " ) > -1 ) { // Shift
-            } else if(e.target.classList.contains('mkkb-shiftBtn')) {
-				if(isShift) {
-					isShift = !1;
-					domMgr.removeClass('mkkb-cnt', 'mkkb-shift');
-					domMgr.removeClass('mkkb-shiftBtn', 'mkkb-clicked', 1);
-				} else {
-					isShift = !0;
-					domMgr.addClass('mkkb-cnt', 'mkkb-shift');
-					domMgr.addClass('mkkb-shiftBtn', 'mkkb-clicked', 1);
-                    
-                    if( isCaps ) {
-                        domMgr.removeClass('mkkb-cnt', 'mkkb-caps');
-                        domMgr.removeClass('mkkb-caps', 'mkkb-clicked', 1);
-                        isCaps = !1;
-                    }
-				}
-			
-			//} else if( (" " + e.target.className + " ").replace(/[\n\t\r]/g, " ").indexOf( " mkkb-caps " ) > -1 ) { // Caps Lock
-            } else if(e.target.classList.contains('mkkb-caps')) {
-                if(isCaps) {
-					isCaps = !1;
-					domMgr.removeClass('mkkb-cnt', 'mkkb-caps');
-					domMgr.removeClass('k20', 'mkkb-clicked');
-				} else {
-					isCaps = !0;
-					domMgr.addClass('mkkb-cnt', 'mkkb-caps');
-					domMgr.addClass('k20', 'mkkb-clicked');
-				}
-                
-                if( isShift ) {
-                    domMgr.removeClass('mkkb-cnt', 'mkkb-shift');
-                    domMgr.removeClass('mkkb-shiftBtn', 'mkkb-clicked', 1);
-                    isShift = !1;
-                }
-			}
-		}
-	});
-
-	function getChar(code) {
+    function getChar(code) {
 		if (isCaps || isShift) { // isCaps != isShift
 			return keymap.upper[code] || '';
 		} else {
